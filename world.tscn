@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://cci8gulkkl0er"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_dkra7"]
+[ext_resource type="Texture2D" uid="uid://532po000em2e" path="res://player.png" id="2_6adhh"]
+[ext_resource type="PackedScene" uid="uid://b3sja1mgnk764" path="res://wall_node.tscn" id="3_bt3y6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tc5iv"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e21i5"]
+size = Vector2(16.5, 16.5)
+
+[node name="World" type="Node2D"]
+
+[node name="PlayerNode" type="Node2D" parent="."]
+
+[node name="Player" type="CharacterBody2D" parent="PlayerNode"]
+script = ExtResource("1_dkra7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerNode/Player"]
+shape = SubResource("RectangleShape2D_tc5iv")
+
+[node name="Sprite2D" type="Sprite2D" parent="PlayerNode/Player"]
+texture = ExtResource("2_6adhh")
+
+[node name="Detect" type="Area2D" parent="PlayerNode/Player"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerNode/Player/Detect"]
+shape = SubResource("RectangleShape2D_e21i5")
+
+[node name="WallNode" parent="." instance=ExtResource("3_bt3y6")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
